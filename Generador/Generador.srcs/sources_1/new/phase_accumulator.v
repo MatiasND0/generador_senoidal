@@ -3,14 +3,24 @@
 module phase_accumulator(
     input CLK,
     input RST,
-    input [23:0] M,
-    output [23:0] address
+    input EN,
+    input [23:0] phase_increment,
+    output [12:0] phase_accumulator
 );
-
-    wire [23:0] N;
-    wire [23:0] n;
     
-    adder U0 (M,N,n);
-    phase_register U1 (CLK,RST,1'd1,n,address);
+    reg [23:0] phase_reg;
+    wire [23:0] next_phase;
+
+    always @(posedge CLK or posedge RST) begin
+        if (RST)
+          phase_reg <= 0;
+        else 
+            if (EN)
+                phase_reg <= next_phase;
+    end
+    
+    assign next_phase = phase_reg + phase_increment;
+    
+    assign phase_accumulator = phase_reg[18:0];
 
 endmodule
