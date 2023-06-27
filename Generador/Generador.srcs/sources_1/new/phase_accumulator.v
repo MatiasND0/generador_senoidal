@@ -11,7 +11,8 @@ module phase_accummulator(
     reg [23:0] phase_reg;
     wire [23:0] next_phase;
 
-    always @(posedge CLK or posedge RST) begin
+    always @(posedge CLK or posedge RST) 
+    begin
         if (RST)
           phase_reg <= 0;
         else 
@@ -20,7 +21,6 @@ module phase_accummulator(
     end
     
     assign next_phase = phase_reg + phase_increment;
-    
-    assign phase_accumulator = phase_reg[18:0];
+    assign phase_accumulator = phase_reg[23:12];
 
 endmodule

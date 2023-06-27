@@ -7,11 +7,16 @@ module main(
     output [7:0] DAC
     );
         
-    wire [23:0] N;
+    wire ena = 1;
+    wire wea = 0;
+    wire dina = 12'd0;
+    
     wire [11:0] ADDRA;
+    wire [23:0] P_INC;
     
-    tuning U0(A,B,CLK,RST,N);
-    phase_accummulator U1(CLK,RST,1'b1,N,ADDRA);
-    blk_mem_gen_0 U2(CLK,1'b1,1'b1,ADDRA,12'b0,DAC);
     
+    tuning U0(A,B,CLK,RST,P_INC);
+    phase_accummulator U1(CLK,RST,ena,P_INC,ADDRA);
+    blk_mem_gen_0 U2(CLK,ena,wea,ADDRA,dina,DAC);
+        
 endmodule

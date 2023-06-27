@@ -2,20 +2,26 @@
 
 module sim();
 
-    reg rst;
-    reg a;
-    reg b;
     reg clk;
-    wire [23:0] s;
-
-    tuning u0 (clk,rst,a,b,s);
+    reg rst;
+    reg ena = 1;
+    reg wea = 0;
+    
+    reg [23:0] P_INC = 24'd512;
+    
+    wire [11:0] ADDRA;
+    wire [7:0] s;
+    
+    phase_accummulator U1(clk,rst,ena,P_INC,ADDRA);
+    blk_mem_gen_0 U2(clk,ena,wea,ADDRA,12'd0,s);
 
     initial begin
         rst = 1;
         clk=0;
         forever #2 clk=~clk;
     end
-
+    
+    /*
     initial begin
         a=0;
         forever #8 a=~a;
@@ -27,8 +33,10 @@ module sim();
         forever #8 b=~b;
     end
     
+    */
+    
     initial begin
-        #8
+        #8;
         rst = 0;    
     end
     
