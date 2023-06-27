@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
-module phase_accumulator(
+module phase_accummulator(
     input CLK,
     input RST,
     input EN,
     input [23:0] phase_increment,
-    output [12:0] phase_accumulator
+    output [11:0] phase_accumulator
 );
     
     reg [23:0] phase_reg;

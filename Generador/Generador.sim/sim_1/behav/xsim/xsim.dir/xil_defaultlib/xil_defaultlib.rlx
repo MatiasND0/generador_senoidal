@@ -3,6 +3,5 @@
 Oct 14 2022
 05:20:55
 C:/Users/matia/Desktop/prueba/Generador/Generador.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
-C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sim_1/new/sim.v,1687745631,verilog,,,,sim,,,,,,,,
-C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sources_1/new/phase_accumulator.v,1687742676,verilog,,,,phase_accumulator,,,,,,,,
-C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sources_1/new/tuning.v,1687745588,verilog,,C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sim_1/new/sim.v,,tuning,,,,,,,,
+C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sim_1/new/sim.v,1687885076,verilog,,,,sim,,,,,,,,
+C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sources_1/new/tuning.v,1687884877,verilog,,C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sim_1/new/sim.v,,tuning,,,,,,,,

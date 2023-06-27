@@ -1,26 +1,58 @@
 `timescale 1ns / 1ps
 
 module tuning(
+    input clk,
+    input reset,
     input A,
     input B,
-    input CLK,
-    input RST,
-    output [23:0] N
-    );
-    
-    reg [23:0] count;
-    assign N = count;
-    
-    always @(posedge A)
+    output reg signed [23:0] count
+    );    
+
+(*ASYNC_REG="TRUE"*)reg[1:0] sync, AB; // synchronization registers
+reg[1:0] state;
+localparam S00=2'b00, S01=2'b01, S10=2'b10, S11=2'b11; // states
+
+always @ (posedge clk) // two-stage input synchronizer
     begin
-        if(RST)
-            count = 24'd0;
-        else
-            if(B & count < 24'd16777215)
-                count = count + 24'd1;
-            else
-                if(~B & count > 24'd0)
-                    count = count - 24'd1;
+        sync <= {A,B};
+        AB <= sync;
     end
-    
+
+always @(posedge clk) // always block to compute output
+    begin 
+        if(reset) begin
+            state <= S00;
+            count <= 23'b0;
+        end else
+            case(state)              
+                S00: if(AB == 2'b01) begin
+                        count <= count-23'b1;
+                        state <= S01;
+                    end else if(AB == 2'b10) begin
+                        count <= count+23'b1;
+                        state <= S10;
+                    end                                        
+                S01: if(AB == 2'b00) begin
+                        count <= count+23'b1;
+                        state <= S00;
+                    end else if(AB == 2'b11) begin
+                        count <= count-23'b1;
+                        state <= S11;
+                    end                      
+                S10: if(AB == 2'b00) begin
+                        count <= count-23'b1;
+                        state <= S00;
+                    end else if(AB == 2'b11) begin
+                        count <= count+23'b1;
+                        state <= S11;
+                    end                     
+                S11: if(AB == 2'b01) begin
+                        count <= count+23'b1;
+                        state <= S01;
+                    end else if(AB == 2'b10) begin
+                        count <= count-23'b1;
+                        state <= S10;
+                    end
+            endcase
+    end 
 endmodule
