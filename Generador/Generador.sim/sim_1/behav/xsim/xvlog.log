@@ -1,6 +1,4 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/matia/Desktop/prueba/Generador/Generador.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sources_1/new/phase_accumulator.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module phase_accummulator
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sources_1/new/tuning.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tuning
 INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/matia/Desktop/prueba/Generador/Generador.srcs/sim_1/new/sim.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module sim

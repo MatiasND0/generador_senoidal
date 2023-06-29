@@ -5,54 +5,69 @@ module tuning(
     input RST,
     input A,
     input B,
-    output reg signed [23:0] count
+    output reg [23:0] count
     );    
-
-    (*ASYNC_REG="TRUE"*)reg[1:0] sync, AB; // synchronization registers
-    reg[1:0] state;
-    localparam S0=2'b00, S1=2'b01, S2=2'b10, S3=2'b11; // states
     
-    always @ (posedge CLK) // two-stage input synchronizer
-        begin
-            sync <= {A,B};
-            AB <= sync;
-        end
+    reg [1:0] state;
+    reg [1:0] newState;
     
-    always @(posedge CLK) // always block to compute output
-        begin 
-            if(RST) begin
-                state <= S0;
-                count <= 24'd0;
-            end else
-                case(state)              
-                    S0: if(AB == 2'b01 & count>24'd1 ) begin
-                            count <= count-24'd1;
-                            state <= S1;
-                        end else if(AB == 2'b10 & count<24'd16777215 ) begin
-                            count <= count+24'd1;
-                            state <= S2;
-                        end                                        
-                    S1: if(AB == 2'b00 & count<24'd16777215 ) begin
-                            count <= count+24'd1;
-                            state <= S0;
-                        end else if(AB == 2'b11 & count>24'd1) begin
-                            count <= count-24'd1;
-                            state <= S3;
-                        end                      
-                    S2: if(AB == 2'b00 & count>24'd1) begin
-                            count <= count-24'd1;
-                            state <= S0;
-                        end else if(AB == 2'b11 & count<24'd16777215 ) begin
-                            count <= count+24'd1;
-                            state <= S3;
-                        end                     
-                    S3: if(AB == 2'b01 & count<24'd16777215 ) begin
-                            count <= count+24'd1;
-                            state <= S1;
-                        end else if(AB == 2'b10 & count>24'd1) begin
-                            count <= count-24'd1;
-                            state <= S2;
-                        end
-                endcase
-        end 
+    always @(posedge CLK)
+    if (RST)
+    begin
+        state <= 2'b00; count <= 24'b0;
+    end
+    else
+        state <= newState; 
+    
+    always @(state or A or B)
+    begin
+        case(state)
+            2'b00: 
+                if(A==1 & B==0)
+                    begin
+                        newState = 2'b10; 
+                        count = count+24'd1;
+                    end else
+                    if(A==0 & B==1)
+                    begin
+                        newState = 2'b01;  
+                        count = count-24'd1;
+                    end
+            2'b01:
+                if(A==0 & B==0)
+                    begin
+                        newState = 2'b00; 
+                        count = count+24'd1;
+                    end else
+                    if(A==1 & B==1)
+                    begin
+                        newState = 2'b11;  
+                        count = count-24'd1;
+                    end
+            2'b10:
+                if(A==1 & B==1)
+                    begin
+                        newState = 2'b11; 
+                        count = count+24'd1;
+                    end else
+                    if(A==0 & B==0)
+                    begin
+                        newState = 2'b00;  
+                        count = count-24'd1;
+                    end
+            2'b11:
+                if(A==0 & B==1)
+                    begin
+                        newState = 2'b01; 
+                        count = count+24'd1;
+                    end else
+                    if(A==1 & B==0)
+                    begin
+                        newState = 2'b10;  
+                        count = count-24'd1;
+                    end
+            
+        endcase
+    end
+    
 endmodule

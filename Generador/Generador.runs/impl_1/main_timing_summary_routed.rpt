@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date         : Mon Jun 26 17:30:59 2023
+| Date         : Thu Jun 29 16:09:31 2023
 | Host         : HuntedHousePC running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file main_timing_summary_routed.rpt -pb main_timing_summary_routed.pb -rpx main_timing_summary_routed.rpx -warn_on_violation
 | Design       : main
@@ -39,9 +39,10 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity          Description                  Violations  
----------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  37          
+Rule       Severity          Description                                                       Violations  
+---------  ----------------  ----------------------------------------------------------------  ----------  
+TIMING-17  Critical Warning  Non-clocked sequential cell                                       2           
+CKLD-2     Warning           Clock Net has IO Driver, not a Clock Buf, and/or non-Clock loads  1           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -51,11 +52,11 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (37)
+1. checking no_clock (2)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (84)
-5. checking no_input_delay (3)
+4. checking unconstrained_internal_endpoints (1)
+5. checking no_input_delay (0)
 6. checking no_output_delay (8)
 7. checking multiple_clock (0)
 8. checking generated_clocks (0)
@@ -64,9 +65,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (37)
--------------------------
- There are 37 register/latch pins with no clock driven by root clock pin: CLK (HIGH)
+1. checking no_clock (2)
+------------------------
+ There are 2 register/latch pins with no clock driven by root clock pin: CLK (HIGH)
 
 
 2. checking constant_clock (0)
@@ -79,16 +80,16 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (84)
--------------------------------------------------
- There are 84 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (1)
+------------------------------------------------
+ There is 1 pin that is not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
-5. checking no_input_delay (3)
+5. checking no_input_delay (0)
 ------------------------------
- There are 3 input ports with no input delay specified. (HIGH)
+ There are 0 input ports with no input delay specified.
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -140,7 +141,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                   92          inf        0.000                      0                   92           NA           NA                      NA                    NA  
+        inf        0.000                      0                    9          inf        0.000                      0                    9           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -209,8 +210,8 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay            92 Endpoints
-Min Delay            92 Endpoints
+Max Delay             9 Endpoints
+Min Delay             9 Endpoints
 --------------------------------------------------------------------------------------
 
 
@@ -219,126 +220,21 @@ Max Delay Paths
 Slack:                    inf
   Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
                             (rising edge-triggered cell RAMB36E1)
-  Destination:            DAC[4]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.951ns  (logic 4.418ns (63.560%)  route 2.533ns (36.440%))
-  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[4])
-                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[4]
-                         net (fo=1, routed)           2.533     3.415    DAC_OBUF[4]
-    D17                  OBUF (Prop_obuf_I_O)         3.536     6.951 r  DAC_OBUF[4]_inst/O
-                         net (fo=0)                   0.000     6.951    DAC[4]
-    D17                                                               r  DAC[4] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E1)
-  Destination:            DAC[5]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.784ns  (logic 4.420ns (65.152%)  route 2.364ns (34.848%))
-  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[5])
-                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[5]
-                         net (fo=1, routed)           2.364     3.246    DAC_OBUF[5]
-    E17                  OBUF (Prop_obuf_I_O)         3.538     6.784 r  DAC_OBUF[5]_inst/O
-                         net (fo=0)                   0.000     6.784    DAC[5]
-    E17                                                               r  DAC[5] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E1)
-  Destination:            DAC[2]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.755ns  (logic 4.430ns (65.575%)  route 2.326ns (34.425%))
-  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[2])
-                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[2]
-                         net (fo=1, routed)           2.326     3.208    DAC_OBUF[2]
-    E18                  OBUF (Prop_obuf_I_O)         3.548     6.755 r  DAC_OBUF[2]_inst/O
-                         net (fo=0)                   0.000     6.755    DAC[2]
-    E18                                                               r  DAC[2] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E1)
-  Destination:            DAC[3]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.745ns  (logic 4.403ns (65.281%)  route 2.342ns (34.719%))
-  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[3])
-                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[3]
-                         net (fo=1, routed)           2.342     3.224    DAC_OBUF[3]
-    G17                  OBUF (Prop_obuf_I_O)         3.521     6.745 r  DAC_OBUF[3]_inst/O
-                         net (fo=0)                   0.000     6.745    DAC[3]
-    G17                                                               r  DAC[3] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E1)
-  Destination:            DAC[0]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.636ns  (logic 4.447ns (67.014%)  route 2.189ns (32.986%))
-  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
-                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[0]
-                         net (fo=1, routed)           2.189     3.071    DAC_OBUF[0]
-    C17                  OBUF (Prop_obuf_I_O)         3.565     6.636 r  DAC_OBUF[0]_inst/O
-                         net (fo=0)                   0.000     6.636    DAC[0]
-    C17                                                               r  DAC[0] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-                            (rising edge-triggered cell RAMB36E1)
   Destination:            DAC[1]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.575ns  (logic 4.437ns (67.485%)  route 2.138ns (32.515%))
+  Data Path Delay:        6.775ns  (logic 4.437ns (65.490%)  route 2.338ns (34.510%))
   Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
                                                       0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[1]
-                         net (fo=1, routed)           2.138     3.020    DAC_OBUF[1]
-    D18                  OBUF (Prop_obuf_I_O)         3.555     6.575 r  DAC_OBUF[1]_inst/O
-                         net (fo=0)                   0.000     6.575    DAC[1]
+                         net (fo=1, routed)           2.338     3.220    DAC_OBUF[1]
+    D18                  OBUF (Prop_obuf_I_O)         3.555     6.775 r  DAC_OBUF[1]_inst/O
+                         net (fo=0)                   0.000     6.775    DAC[1]
     D18                                                               r  DAC[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -349,18 +245,39 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.568ns  (logic 4.426ns (67.382%)  route 2.142ns (32.618%))
+  Data Path Delay:        6.770ns  (logic 4.426ns (65.370%)  route 2.344ns (34.630%))
   Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[7])
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[7])
                                                       0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[7]
-                         net (fo=1, routed)           2.142     3.024    DAC_OBUF[7]
-    G18                  OBUF (Prop_obuf_I_O)         3.544     6.568 r  DAC_OBUF[7]_inst/O
-                         net (fo=0)                   0.000     6.568    DAC[7]
+                         net (fo=1, routed)           2.344     3.226    DAC_OBUF[7]
+    G18                  OBUF (Prop_obuf_I_O)         3.544     6.770 r  DAC_OBUF[7]_inst/O
+                         net (fo=0)                   0.000     6.770    DAC[7]
     G18                                                               r  DAC[7] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[4]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.764ns  (logic 4.418ns (65.323%)  route 2.345ns (34.677%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[4])
+                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[4]
+                         net (fo=1, routed)           2.345     3.227    DAC_OBUF[4]
+    D17                  OBUF (Prop_obuf_I_O)         3.536     6.764 r  DAC_OBUF[4]_inst/O
+                         net (fo=0)                   0.000     6.764    DAC[4]
+    D17                                                               r  DAC[4] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -370,94 +287,119 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.558ns  (logic 4.420ns (67.398%)  route 2.138ns (32.602%))
+  Data Path Delay:        6.758ns  (logic 4.420ns (65.401%)  route 2.338ns (34.599%))
   Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    RAMB36_X0Y21         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
-    RAMB36_X0Y21         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[6])
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[6])
                                                       0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[6]
-                         net (fo=1, routed)           2.138     3.020    DAC_OBUF[6]
-    F18                  OBUF (Prop_obuf_I_O)         3.538     6.558 r  DAC_OBUF[6]_inst/O
-                         net (fo=0)                   0.000     6.558    DAC[6]
+                         net (fo=1, routed)           2.338     3.220    DAC_OBUF[6]
+    F18                  OBUF (Prop_obuf_I_O)         3.538     6.758 r  DAC_OBUF[6]_inst/O
+                         net (fo=0)                   0.000     6.758    DAC[6]
     F18                                                               r  DAC[6] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 A
-                            (input port)
-  Destination:            U0/count_reg[21]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[5]
+                            (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.325ns  (logic 2.977ns (47.064%)  route 3.348ns (52.936%))
-  Logic Levels:           8  (CARRY4=6 IBUF=1 LUT4=1)
+  Data Path Delay:        6.622ns  (logic 4.420ns (66.742%)  route 2.202ns (33.258%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    D14                                               0.000     0.000 r  A (IN)
-                         net (fo=0)                   0.000     0.000    A
-    D14                  IBUF (Prop_ibuf_I_O)         1.483     1.483 r  A_IBUF_inst/O
-                         net (fo=26, routed)          3.159     4.642    U0/A_IBUF
-    SLICE_X4Y104         LUT4 (Prop_lut4_I0_O)        0.124     4.766 r  U0/count[0]_i_2/O
-                         net (fo=1, routed)           0.189     4.955    U0/count[0]_i_2_n_0
-    SLICE_X5Y104         CARRY4 (Prop_carry4_CYINIT_CO[3])
-                                                      0.580     5.535 r  U0/count_reg[0]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.535    U0/count_reg[0]_i_1_n_0
-    SLICE_X5Y105         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.649 r  U0/count_reg[4]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.649    U0/count_reg[4]_i_1_n_0
-    SLICE_X5Y106         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.763 r  U0/count_reg[8]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.763    U0/count_reg[8]_i_1_n_0
-    SLICE_X5Y107         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.877 r  U0/count_reg[12]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.877    U0/count_reg[12]_i_1_n_0
-    SLICE_X5Y108         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.991 r  U0/count_reg[16]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.991    U0/count_reg[16]_i_1_n_0
-    SLICE_X5Y109         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     6.325 r  U0/count_reg[20]_i_1/O[1]
-                         net (fo=1, routed)           0.000     6.325    U0/count_reg[20]_i_1_n_6
-    SLICE_X5Y109         FDRE                                         r  U0/count_reg[21]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[5])
+                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[5]
+                         net (fo=1, routed)           2.202     3.084    DAC_OBUF[5]
+    E17                  OBUF (Prop_obuf_I_O)         3.538     6.622 r  DAC_OBUF[5]_inst/O
+                         net (fo=0)                   0.000     6.622    DAC[5]
+    E17                                                               r  DAC[5] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 A
-                            (input port)
-  Destination:            U0/count_reg[23]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[0]
+                            (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        6.304ns  (logic 2.956ns (46.888%)  route 3.348ns (53.112%))
-  Logic Levels:           8  (CARRY4=6 IBUF=1 LUT4=1)
+  Data Path Delay:        6.589ns  (logic 4.447ns (67.487%)  route 2.142ns (32.513%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    D14                                               0.000     0.000 r  A (IN)
-                         net (fo=0)                   0.000     0.000    A
-    D14                  IBUF (Prop_ibuf_I_O)         1.483     1.483 r  A_IBUF_inst/O
-                         net (fo=26, routed)          3.159     4.642    U0/A_IBUF
-    SLICE_X4Y104         LUT4 (Prop_lut4_I0_O)        0.124     4.766 r  U0/count[0]_i_2/O
-                         net (fo=1, routed)           0.189     4.955    U0/count[0]_i_2_n_0
-    SLICE_X5Y104         CARRY4 (Prop_carry4_CYINIT_CO[3])
-                                                      0.580     5.535 r  U0/count_reg[0]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.535    U0/count_reg[0]_i_1_n_0
-    SLICE_X5Y105         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.649 r  U0/count_reg[4]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.649    U0/count_reg[4]_i_1_n_0
-    SLICE_X5Y106         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.763 r  U0/count_reg[8]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.763    U0/count_reg[8]_i_1_n_0
-    SLICE_X5Y107         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.877 r  U0/count_reg[12]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.877    U0/count_reg[12]_i_1_n_0
-    SLICE_X5Y108         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     5.991 r  U0/count_reg[16]_i_1/CO[3]
-                         net (fo=1, routed)           0.000     5.991    U0/count_reg[16]_i_1_n_0
-    SLICE_X5Y109         CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     6.304 r  U0/count_reg[20]_i_1/O[3]
-                         net (fo=1, routed)           0.000     6.304    U0/count_reg[20]_i_1_n_4
-    SLICE_X5Y109         FDRE                                         r  U0/count_reg[23]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
+                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[0]
+                         net (fo=1, routed)           2.142     3.024    DAC_OBUF[0]
+    C17                  OBUF (Prop_obuf_I_O)         3.565     6.589 r  DAC_OBUF[0]_inst/O
+                         net (fo=0)                   0.000     6.589    DAC[0]
+    C17                                                               r  DAC[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[2]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.565ns  (logic 4.430ns (67.481%)  route 2.135ns (32.519%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[2])
+                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[2]
+                         net (fo=1, routed)           2.135     3.017    DAC_OBUF[2]
+    E18                  OBUF (Prop_obuf_I_O)         3.548     6.565 r  DAC_OBUF[2]_inst/O
+                         net (fo=0)                   0.000     6.565    DAC[2]
+    E18                                                               r  DAC[2] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[3]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        6.543ns  (logic 4.403ns (67.294%)  route 2.140ns (32.706%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[3])
+                                                      0.882     0.882 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[3]
+                         net (fo=1, routed)           2.140     3.022    DAC_OBUF[3]
+    G17                  OBUF (Prop_obuf_I_O)         3.521     6.543 r  DAC_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     6.543    DAC[3]
+    G17                                                               r  DAC[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_gate_1_cooolDelFlop/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/ENARDEN
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        0.860ns  (logic 0.518ns (60.217%)  route 0.342ns (39.783%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y112         FDCE                         0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_gate_1_cooolDelFlop/C
+    SLICE_X8Y112         FDCE (Prop_fdce_C_Q)         0.518     0.518 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_gate_1_cooolDelFlop/Q
+                         net (fo=1, routed)           0.342     0.860    U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_sig_1
+    RAMB36_X0Y22         RAMB36E1                                     r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/ENARDEN
   -------------------------------------------------------------------    -------------------
 
 
@@ -467,203 +409,188 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 U0/count_reg[12]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[13]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_gate_1_cooolDelFlop/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/ENARDEN
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.343ns  (logic 0.265ns (77.236%)  route 0.078ns (22.764%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        0.317ns  (logic 0.164ns (51.698%)  route 0.153ns (48.302%))
+  Logic Levels:           1  (FDCE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y107         FDRE                         0.000     0.000 r  U0/count_reg[12]/C
-    SLICE_X5Y107         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[12]/Q
-                         net (fo=3, routed)           0.078     0.219    U0/N[12]
-    SLICE_X5Y107         CARRY4 (Prop_carry4_DI[0]_O[1])
-                                                      0.124     0.343 r  U0/count_reg[12]_i_1/O[1]
-                         net (fo=1, routed)           0.000     0.343    U0/count_reg[12]_i_1_n_6
-    SLICE_X5Y107         FDRE                                         r  U0/count_reg[13]/D
+    SLICE_X8Y112         FDCE                         0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_gate_1_cooolDelFlop/C
+    SLICE_X8Y112         FDCE (Prop_fdce_C_Q)         0.164     0.164 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_gate_1_cooolDelFlop/Q
+                         net (fo=1, routed)           0.153     0.317    U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_cooolgate_en_sig_1
+    RAMB36_X0Y22         RAMB36E1                                     r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/ENARDEN
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[16]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[17]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[3]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.343ns  (logic 0.265ns (77.236%)  route 0.078ns (22.764%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        1.993ns  (logic 1.426ns (71.553%)  route 0.567ns (28.447%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y108         FDRE                         0.000     0.000 r  U0/count_reg[16]/C
-    SLICE_X5Y108         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[16]/Q
-                         net (fo=3, routed)           0.078     0.219    U0/N[16]
-    SLICE_X5Y108         CARRY4 (Prop_carry4_DI[0]_O[1])
-                                                      0.124     0.343 r  U0/count_reg[16]_i_1/O[1]
-                         net (fo=1, routed)           0.000     0.343    U0/count_reg[16]_i_1_n_6
-    SLICE_X5Y108         FDRE                                         r  U0/count_reg[17]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[3])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[3]
+                         net (fo=1, routed)           0.567     0.771    DAC_OBUF[3]
+    G17                  OBUF (Prop_obuf_I_O)         1.222     1.993 r  DAC_OBUF[3]_inst/O
+                         net (fo=0)                   0.000     1.993    DAC[3]
+    G17                                                               r  DAC[3] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[20]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[21]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[2]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.343ns  (logic 0.265ns (77.236%)  route 0.078ns (22.764%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        1.996ns  (logic 1.453ns (72.763%)  route 0.544ns (27.237%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y109         FDRE                         0.000     0.000 r  U0/count_reg[20]/C
-    SLICE_X5Y109         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[20]/Q
-                         net (fo=3, routed)           0.078     0.219    U0/N[20]
-    SLICE_X5Y109         CARRY4 (Prop_carry4_DI[0]_O[1])
-                                                      0.124     0.343 r  U0/count_reg[20]_i_1/O[1]
-                         net (fo=1, routed)           0.000     0.343    U0/count_reg[20]_i_1_n_6
-    SLICE_X5Y109         FDRE                                         r  U0/count_reg[21]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[2])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[2]
+                         net (fo=1, routed)           0.544     0.748    DAC_OBUF[2]
+    E18                  OBUF (Prop_obuf_I_O)         1.249     1.996 r  DAC_OBUF[2]_inst/O
+                         net (fo=0)                   0.000     1.996    DAC[2]
+    E18                                                               r  DAC[2] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[4]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[5]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[5]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.344ns  (logic 0.265ns (77.004%)  route 0.079ns (22.996%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        2.034ns  (logic 1.442ns (70.925%)  route 0.591ns (29.075%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y105         FDRE                         0.000     0.000 r  U0/count_reg[4]/C
-    SLICE_X5Y105         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[4]/Q
-                         net (fo=5, routed)           0.079     0.220    U0/N[4]
-    SLICE_X5Y105         CARRY4 (Prop_carry4_DI[0]_O[1])
-                                                      0.124     0.344 r  U0/count_reg[4]_i_1/O[1]
-                         net (fo=1, routed)           0.000     0.344    U0/count_reg[4]_i_1_n_6
-    SLICE_X5Y105         FDRE                                         r  U0/count_reg[5]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[5])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[5]
+                         net (fo=1, routed)           0.591     0.795    DAC_OBUF[5]
+    E17                  OBUF (Prop_obuf_I_O)         1.238     2.034 r  DAC_OBUF[5]_inst/O
+                         net (fo=0)                   0.000     2.034    DAC[5]
+    E17                                                               r  DAC[5] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[8]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[9]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[0]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.344ns  (logic 0.265ns (77.004%)  route 0.079ns (22.996%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        2.042ns  (logic 1.470ns (71.968%)  route 0.572ns (28.032%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y106         FDRE                         0.000     0.000 r  U0/count_reg[8]/C
-    SLICE_X5Y106         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[8]/Q
-                         net (fo=5, routed)           0.079     0.220    U0/N[8]
-    SLICE_X5Y106         CARRY4 (Prop_carry4_DI[0]_O[1])
-                                                      0.124     0.344 r  U0/count_reg[8]_i_1/O[1]
-                         net (fo=1, routed)           0.000     0.344    U0/count_reg[8]_i_1_n_6
-    SLICE_X5Y106         FDRE                                         r  U0/count_reg[9]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[0])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[0]
+                         net (fo=1, routed)           0.572     0.776    DAC_OBUF[0]
+    C17                  OBUF (Prop_obuf_I_O)         1.266     2.042 r  DAC_OBUF[0]_inst/O
+                         net (fo=0)                   0.000     2.042    DAC[0]
+    C17                                                               r  DAC[0] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[14]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[15]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[4]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.346ns  (logic 0.268ns (77.433%)  route 0.078ns (22.567%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        2.085ns  (logic 1.441ns (69.133%)  route 0.643ns (30.867%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y107         FDRE                         0.000     0.000 r  U0/count_reg[14]/C
-    SLICE_X5Y107         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[14]/Q
-                         net (fo=3, routed)           0.078     0.219    U0/N[14]
-    SLICE_X5Y107         CARRY4 (Prop_carry4_DI[2]_O[3])
-                                                      0.127     0.346 r  U0/count_reg[12]_i_1/O[3]
-                         net (fo=1, routed)           0.000     0.346    U0/count_reg[12]_i_1_n_4
-    SLICE_X5Y107         FDRE                                         r  U0/count_reg[15]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[4])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[4]
+                         net (fo=1, routed)           0.643     0.847    DAC_OBUF[4]
+    D17                  OBUF (Prop_obuf_I_O)         1.237     2.085 r  DAC_OBUF[4]_inst/O
+                         net (fo=0)                   0.000     2.085    DAC[4]
+    D17                                                               r  DAC[4] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[18]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[19]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[6]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.346ns  (logic 0.268ns (77.433%)  route 0.078ns (22.567%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        2.094ns  (logic 1.443ns (68.899%)  route 0.651ns (31.101%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y108         FDRE                         0.000     0.000 r  U0/count_reg[18]/C
-    SLICE_X5Y108         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[18]/Q
-                         net (fo=3, routed)           0.078     0.219    U0/N[18]
-    SLICE_X5Y108         CARRY4 (Prop_carry4_DI[2]_O[3])
-                                                      0.127     0.346 r  U0/count_reg[16]_i_1/O[3]
-                         net (fo=1, routed)           0.000     0.346    U0/count_reg[16]_i_1_n_4
-    SLICE_X5Y108         FDRE                                         r  U0/count_reg[19]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[6])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[6]
+                         net (fo=1, routed)           0.651     0.855    DAC_OBUF[6]
+    F18                  OBUF (Prop_obuf_I_O)         1.239     2.094 r  DAC_OBUF[6]_inst/O
+                         net (fo=0)                   0.000     2.094    DAC[6]
+    F18                                                               r  DAC[6] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[22]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[23]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[7]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.346ns  (logic 0.268ns (77.433%)  route 0.078ns (22.567%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        2.094ns  (logic 1.448ns (69.173%)  route 0.645ns (30.827%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y109         FDRE                         0.000     0.000 r  U0/count_reg[22]/C
-    SLICE_X5Y109         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[22]/Q
-                         net (fo=3, routed)           0.078     0.219    U0/N[22]
-    SLICE_X5Y109         CARRY4 (Prop_carry4_DI[2]_O[3])
-                                                      0.127     0.346 r  U0/count_reg[20]_i_1/O[3]
-                         net (fo=1, routed)           0.000     0.346    U0/count_reg[20]_i_1_n_4
-    SLICE_X5Y109         FDRE                                         r  U0/count_reg[23]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[7])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[7]
+                         net (fo=1, routed)           0.645     0.849    DAC_OBUF[7]
+    G18                  OBUF (Prop_obuf_I_O)         1.244     2.094 r  DAC_OBUF[7]_inst/O
+                         net (fo=0)                   0.000     2.094    DAC[7]
+    G18                                                               r  DAC[7] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 U0/count_reg[10]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[11]/D
+  Source:                 U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+                            (rising edge-triggered cell RAMB36E1)
+  Destination:            DAC[1]
+                            (output port)
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.347ns  (logic 0.268ns (77.203%)  route 0.079ns (22.797%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
+  Data Path Delay:        2.111ns  (logic 1.460ns (69.154%)  route 0.651ns (30.846%))
+  Logic Levels:           2  (OBUF=1 RAMB36E1=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X5Y106         FDRE                         0.000     0.000 r  U0/count_reg[10]/C
-    SLICE_X5Y106         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[10]/Q
-                         net (fo=5, routed)           0.079     0.220    U0/N[10]
-    SLICE_X5Y106         CARRY4 (Prop_carry4_DI[2]_O[3])
-                                                      0.127     0.347 r  U0/count_reg[8]_i_1/O[3]
-                         net (fo=1, routed)           0.000     0.347    U0/count_reg[8]_i_1_n_4
-    SLICE_X5Y106         FDRE                                         r  U0/count_reg[11]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 U0/count_reg[6]/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            U0/count_reg[7]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.347ns  (logic 0.268ns (77.203%)  route 0.079ns (22.797%))
-  Logic Levels:           2  (CARRY4=1 FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X5Y105         FDRE                         0.000     0.000 r  U0/count_reg[6]/C
-    SLICE_X5Y105         FDRE (Prop_fdre_C_Q)         0.141     0.141 r  U0/count_reg[6]/Q
-                         net (fo=5, routed)           0.079     0.220    U0/N[6]
-    SLICE_X5Y105         CARRY4 (Prop_carry4_DI[2]_O[3])
-                                                      0.127     0.347 r  U0/count_reg[4]_i_1/O[3]
-                         net (fo=1, routed)           0.000     0.347    U0/count_reg[4]_i_1_n_4
-    SLICE_X5Y105         FDRE                                         r  U0/count_reg[7]/D
+    RAMB36_X0Y22         RAMB36E1                     0.000     0.000 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/CLKARDCLK
+    RAMB36_X0Y22         RAMB36E1 (Prop_ramb36e1_CLKARDCLK_DOADO[1])
+                                                      0.204     0.204 r  U2/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_init.ram/DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram/DOADO[1]
+                         net (fo=1, routed)           0.651     0.855    DAC_OBUF[1]
+    D18                  OBUF (Prop_obuf_I_O)         1.256     2.111 r  DAC_OBUF[1]_inst/O
+                         net (fo=0)                   0.000     2.111    DAC[1]
+    D18                                                               r  DAC[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
 
