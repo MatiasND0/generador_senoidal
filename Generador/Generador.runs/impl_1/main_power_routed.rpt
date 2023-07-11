@@ -1,11 +1,11 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-| Date             : Thu Jun 29 16:09:31 2023
+| Date             : Tue Jul  4 15:32:43 2023
 | Host             : HuntedHousePC running 64-bit major release  (build 9200)
 | Command          : report_power -file main_power_routed.rpt -pb main_power_summary_routed.pb -rpx main_power_routed.rpx
 | Design           : main
-| Device           : xc7a100tcsg324-1
+| Device           : xc7a35tcpg236-1
 | Design State     : routed
 | Grade            : commercial
 | Process          : typical
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.103        |
+| Total On-Chip Power (W)  | 0.094        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.019        |
-| Device Static (W)        | 0.084        |
-| Effective TJA (C/W)      | 4.6          |
+| Dynamic (W)              | 0.026        |
+| Device Static (W)        | 0.069        |
+| Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
 | Junction Temperature (C) | 25.5         |
 | Confidence Level         | Low          |
@@ -54,12 +54,12 @@ Table of Contents
 +--------------+-----------+----------+-----------+-----------------+
 | Slice Logic  |     0.000 |        6 |       --- |             --- |
 |   Others     |     0.000 |        5 |       --- |             --- |
-|   Register   |     0.000 |        1 |    126800 |           <0.01 |
-| Signals      |     0.015 |       10 |       --- |             --- |
-| Block RAM    |     0.000 |        1 |       135 |            0.74 |
-| I/O          |     0.004 |        9 |       210 |            4.29 |
-| Static Power |     0.084 |          |           |                 |
-| Total        |     0.103 |          |           |                 |
+|   Register   |     0.000 |        1 |     41600 |           <0.01 |
+| Signals      |     0.022 |       10 |       --- |             --- |
+| Block RAM    |     0.000 |        1 |        50 |            2.00 |
+| I/O          |     0.004 |        9 |       106 |            8.49 |
+| Static Power |     0.069 |          |           |                 |
+| Total        |     0.094 |          |           |                 |
 +--------------+-----------+----------+-----------+-----------------+
 
 
@@ -69,8 +69,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.034 |       0.019 |      0.015 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.018 |       0.000 |      0.018 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.036 |       0.026 |      0.010 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -109,7 +109,7 @@ Table of Contents
 
 +-----------------------+--------------------------+
 | Ambient Temp (C)      | 25.0                     |
-| ThetaJA (C/W)         | 4.6                      |
+| ThetaJA (C/W)         | 5.0                      |
 | Airflow (LFM)         | 250                      |
 | Heat Sink             | medium (Medium Profile)  |
 | ThetaSA (C/W)         | 4.6                      |
@@ -136,7 +136,7 @@ Table of Contents
 +------+-----------+
 | Name | Power (W) |
 +------+-----------+
-| main |     0.019 |
+| main |     0.026 |
 +------+-----------+
 
 

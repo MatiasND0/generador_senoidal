@@ -1,0 +1,3 @@
+ROM_blk_mem_gen_0_0.v,verilog,xil_defaultlib,../../../bd/ROM/ip/ROM_blk_mem_gen_0_0/sim/ROM_blk_mem_gen_0_0.v,
+ROM.v,verilog,xil_defaultlib,../../../bd/ROM/sim/ROM.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -70,14 +70,10 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "blk_mem_gen_0_synth_1" START { ROLLUP_AUTO }
-set_param checkpoint.writeSynthRtdsInDcp 1
-set_param synth.incrementalSynthesisCache C:/Users/matia/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-8684-HuntedHousePC/incrSyn
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
-create_project -in_memory -part xc7a100tcsg324-1
+create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
@@ -85,6 +81,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir C:/Users/matia/Desktop/prueba/Generador/Generador.cache/wt [current_project]
 set_property parent.project_path C:/Users/matia/Desktop/prueba/Generador/Generador.xpr [current_project]
+set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo c:/Users/matia/Desktop/prueba/Generador/Generador.cache/ip [current_project]
@@ -115,7 +112,7 @@ if { $cacheID == "" } {
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top blk_mem_gen_0 -part xc7a100tcsg324-1 -incremental_mode off -mode out_of_context
+synth_design -top blk_mem_gen_0 -part xc7a35tcpg236-1 -incremental_mode off -mode out_of_context
 OPTRACE "synth_design" END { }
 OPTRACE "Write IP Cache" START { }
 

@@ -1,0 +1,86 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x93CA226393CA2263",
+      "device": "xc7z010clg400-1",
+      "gen_directory": "../../../../Generador_Zybo.gen/sources_1/bd/ROM",
+      "name": "ROM",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2022.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "blk_mem_gen_0": ""
+    },
+    "ports": {
+      "CLKA": {
+        "direction": "I"
+      },
+      "DOUT": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "ADDRA": {
+        "direction": "I",
+        "left": "11",
+        "right": "0"
+      }
+    },
+    "components": {
+      "blk_mem_gen_0": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "ROM_blk_mem_gen_0_0",
+        "xci_path": "ip\\ROM_blk_mem_gen_0_0\\ROM_blk_mem_gen_0_0.xci",
+        "inst_hier_path": "blk_mem_gen_0",
+        "parameters": {
+          "Coe_File": {
+            "value": "../../../../../../../Generador/sin.coe"
+          },
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "false"
+          },
+          "Load_Init_File": {
+            "value": "true"
+          },
+          "Memory_Type": {
+            "value": "Single_Port_ROM"
+          },
+          "Write_Depth_A": {
+            "value": "4096"
+          },
+          "Write_Width_A": {
+            "value": "8"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      }
+    },
+    "nets": {
+      "ADDRA_1": {
+        "ports": [
+          "ADDRA",
+          "blk_mem_gen_0/addra"
+        ]
+      },
+      "CLKA_1": {
+        "ports": [
+          "CLKA",
+          "blk_mem_gen_0/clka"
+        ]
+      },
+      "blk_mem_gen_0_douta": {
+        "ports": [
+          "blk_mem_gen_0/douta",
+          "DOUT"
+        ]
+      }
+    }
+  }
+}

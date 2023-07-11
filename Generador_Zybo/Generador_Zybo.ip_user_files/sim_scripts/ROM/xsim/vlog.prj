@@ -1,0 +1,7 @@
+verilog xil_defaultlib --include "E:/Xilinx/Vivado/2022.2/data/xilinx_vip/include" \
+"../../../bd/ROM/ip/ROM_blk_mem_gen_0_0/sim/ROM_blk_mem_gen_0_0.v" \
+"../../../bd/ROM/sim/ROM.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
